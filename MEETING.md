@@ -22,10 +22,10 @@ https://hackathon.gw.f12gpaas.tsmc.com.tw/
 
 ## 重要時程
 
-~7/16
+~~7/16
 繳交隊名與組長~~
 
-~7/23
+~~7/23
 繳交題目~~
 
 8/2
@@ -80,7 +80,7 @@ https://cloud.google.com/dialogflow/es/docs/fulfillment-overview
 - Gather : https://gather.town/invite?token=WkwhrNkS
 - pw: teamb
 
-### 2021/07/14 (三)
+### 07/14 會議記錄
 1. 公司地圖指引 (標示位置, 環景照片)
 出發點：新進廠區的員工可能對廠區樓層配置不熟悉
 user story : 使用者選擇廠區、樓層後 ，會顯示該樓層的配置圖，可以點擊地圖上的位置標記，觀看環景照片，讓使用者更好認識環境
@@ -155,7 +155,7 @@ then he/her can answer their questions by their info
 project name:
 helpdesk 智能IT客服
 
-### 7/23 
+### 7/23 會議紀錄
 
 決定分工
 
@@ -174,3 +174,21 @@ helpdesk 智能IT客服
 - 謝昀芯
 - 黃文遠
 
+### 7/27 會議紀錄
+
+Bot demo project
+https://github.com/yubinTW/bot-demo
+
+user story:
+
+1. 使用者開始與bot對話
+2. bot詢問使用者問題屬於的系統(Outlook、PC/NB......)
+3. bot請使用者輸入問題描述
+4. bot根據使用者輸入的問題搜尋相關的答案，並詢問使用者回應是否有幫助到他
+5. 若使用者回答是，對話結束;若使用者回答否，則bot詢問是否幫忙新增報修單
+6. 若使用者回答是，bot詢問使用者手機號碼並將「使用者名稱」、「問題所屬之系統」、 「問題描述」、「手機號碼」一併送至後端server
+------------------------------------------
+7. 管理者介面功能:新增報修單、刪除報修單、編輯維修進度、查詢使用者名稱
+
+下次開會時間: 7/29 13:30
+deadline: 8/2
