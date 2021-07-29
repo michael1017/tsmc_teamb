@@ -4,7 +4,12 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "parser": "babel-eslint",
@@ -17,11 +22,13 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "indent": ["error", "tab"],
+    "no-console": "off",
+    "prettier/prettier": "off",
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "eqeqeq": ["error", "smart"],
     "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
     "no-extra-boolean-cast": "off"
   }
 }
