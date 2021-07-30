@@ -4,10 +4,26 @@ import { getForms, addForm, updateForm, deleteForm } from './API'
 import { IForm } from './types/form';
 import { Input, Table, Button } from 'element-react';
 import 'element-theme-default';
+import Banner from './components/Banner'
+
 
 import './App.css'
 
 const App = () => {
+
+  const [forms, setForms] = useState<IForm[]>([])
+  useEffect(() => {
+    fetchForms()
+  }, [])
+
+  const fetchForms = (): void => {
+    // getForms()
+    //   .then(({ data: { forms } }: IForm[] | any) => setForms(forms))
+    //   .catch((err: Error) => console.error(err))
+    console.log(getForms())
+    setForms(getForms())
+  }
+
   interface MyColumn {
     label: string,
     prop: string
@@ -15,44 +31,31 @@ const App = () => {
     [key: string]: any
   }
 
-  interface MyData {
-    id: string,
-    name: string,
-    department: string,
-    workId: string,
-    phone: string,
-    action: any,
-    time: string,
-    status: string,
-    description: string,
-    log: string
-  }
-
   const [columns, setColumns] = useState<
     Array<MyColumn>
   >([{
     label: 'ID',
-    prop: 'id',
+    prop: '_id',
     width: 300,
   },
   {
     label: '姓名',
-    prop: 'name',
+    prop: 'userprofile.username',
     width: 200
   },
   {
     label: '部門',
-    prop: 'department',
+    prop: 'userprofile.departname',
     width: 200
   },
   {
     label: '工號',
-    prop: 'workId',
+    prop: 'userprofile.userid',
     width: 200
   },
   {
     label: '聯絡電話',
-    prop: 'phone',
+    prop: 'userprofile.phone',
     width: 200
   },
   {
@@ -65,103 +68,18 @@ const App = () => {
     }
   }]);
 
-  const [data, setDatas] = useState<
-    Array<MyData>
-  >([{
-    id: '1111111',
-    name: 'aaaa',
-    department: 'AAID',
-    workId: '120801',
-    phone: '0912435677',
-    action: 'any',
-    time: '2021-07-24',
-    status: 'complete',
-    description: 'ok',
-    log: 'cdcd'
-  },{
-    id: '1111112',
-    name: 'aaaa',
-    department: 'AAID',
-    workId: '120801',
-    phone: '0912435677',
-    action: 'any',
-    time: '2021-07-24',
-    status: 'complete',
-    description: 'ok',
-    log: 'cdcd'
-  },{
-    id: '1111113',
-    name: 'aaaa',
-    department: 'AAID',
-    workId: '120801',
-    phone: '0912435677',
-    action: 'any',
-    time: '2021-07-24',
-    status: 'complete',
-    description: 'ok',
-    log: 'cdcd'
-  }])
-
-  // this.state = {
-  //     columns: [
-
-  //     ]
-  // }
-
-	// useEffect(() => {
-	// 	fetchForms()
-	// }, [])
-
-	// const fetchForms = (): void => {
-	// 	getForms()
-	// 		.then(({ data: { forms } }: IForm[] | any) => setForms(forms))
-	// 		.catch((err: Error) => console.error(err))
-	// }
-
-
 	return (
 		<main className="App">
-      <div className="faq-header">
-        <div className="faq-container">
-          <div className="faq-title">FAQ Manager</div>
-          <Input
-            placeholder="Please Enter User Name"
-            style={{width: '400px', position: 'relative', top: '10px'}}
-          />
-        </div>
-      </div>
+      <Banner></Banner>
 
       <div style={{marginTop: '30px', display: 'flex', justifyContent: 'center'}}>
         <Table
           style={{width: '92%'}}
           columns={columns}
-          data={data}
+          data={forms}
           border={true}
         />
       </div>
-
-			{/* <h1>My Forms</h1>
-			<table>
-				<thead>
-					<tr>
-						<th>ID</th>
-						<td>Username</td>
-						<th>Computer Name</th>
-						<th>Status</th>
-						<th>Create At</th>
-					</tr>
-				</thead>
-				<tbody>
-					{
-						forms.map((form: IForm) => (
-							<FormItem
-								key={form._id}
-								form={form}
-							/>
-						))
-					}
-				</tbody>
-			</table> */}
 		</main>
 	)
 }
