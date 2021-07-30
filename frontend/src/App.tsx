@@ -11,16 +11,28 @@ import './App.css'
 
 const App = () => {
 
+  const [formsDefault, setFormsDefault] = useState<IForm[]>([])
   const [forms, setForms] = useState<IForm[]>([])
+  const [input, setInput] = useState('')
   useEffect(() => {
     fetchForms()
   }, [])
+
+  const updateInput = async (input:string) => {
+    const filtered = formsDefault.filter(form => {
+     return form.userprofile.username.toLowerCase().includes(input.toLowerCase())
+    })
+    setInput(input);
+    setForms(filtered);
+ }
+
 
   const fetchForms = (): void => {
     // getForms()
     //   .then(({ data: { forms } }: IForm[] | any) => setForms(forms))
     //   .catch((err: Error) => console.error(err))
     console.log(getForms())
+    setFormsDefault(getForms())
     setForms(getForms())
   }
 
@@ -70,7 +82,10 @@ const App = () => {
 
 	return (
 		<main className="App">
-      <Banner></Banner>
+      <Banner
+       keyword = {input}
+       setKeyword = {updateInput}
+      />
 
       <div style={{marginTop: '30px', display: 'flex', justifyContent: 'center'}}>
         <Table
