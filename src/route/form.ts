@@ -16,6 +16,7 @@ const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
     username:string
   }
 
+  //查看所有報修單
   server.get('/forms', opts, async (request, reply) => {
     try {
       const forms: Array<IForm> = await formRepo.getForms()
@@ -26,6 +27,7 @@ const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
     }
   })
 
+  //查看所有同username的報修單
   server.get<{ Params: UsParam }>('/forms/username=:username', opts, async (request, reply) => {
     try {
       const username = request.params.username
@@ -37,6 +39,7 @@ const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
     }
   })
 
+  //查看某報修單與它所有的維修紀錄
   server.get<{ Params: IdParam }>('/forms/:id', opts, async (request, reply) => {
     try {
       const formid = request.params.id
@@ -49,6 +52,7 @@ const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
     }
   })
 
+  //新增報修單
   server.post('/forms', opts, async (request, reply) => {
     try {
       const formBody: IForm = request.body as IForm
@@ -60,6 +64,7 @@ const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
     }
   })
 
+  //新增某報修單的維修紀錄(每筆維修紀錄新增時皆會有一個維修紀錄自己的time stamp，但並不會更新報修單的time stamp)
   server.post<{ Params: IdParam }>('/forms/:id', opts, async (request, reply) => {
     try {
       const formid = request.params.id
@@ -74,7 +79,7 @@ const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
     }
   })
 
-
+  //更新某報修單狀態(報修單的time stamp只會在這時候更新)
   server.put<{ Params: IdParam }>('/forms/:id', opts, async (request, reply) => {
     try {
       const id = request.params.id
@@ -91,6 +96,7 @@ const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
     }
   })
 
+  //刪除報修單(維修紀錄會在被同時刪除)
   server.delete<{ Params: IdParam }>('/forms/:id', opts, async (request, reply) => {
     try {
       const id = request.params.id
