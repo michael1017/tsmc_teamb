@@ -1,7 +1,5 @@
 import { IForm } from './../types/form'
 import Form from './../models/form'
-import { IRecord } from '../types/maintain_record'
-import Record from '../models/maintain_record'
 
 interface FormRepo {
   getForms(): Promise<Array<IForm>>
