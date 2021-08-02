@@ -7,20 +7,20 @@ type Props = {
     keyword: string;
 };
 function Banner({keyword, setKeyword}:Props){
-    return (
-    <div className="faq-header">
-        <div className="faq-container">
-            <div className="faq-title">FAQ Manager</div>
-            <input
-                placeholder="Please Enter User Name"
-                style={{width: '400px', position: 'relative', top: '10px'}}
-                value={keyword}
-                key="random1"
-                onChange={event => setKeyword(event.target.value)}
-            />
-        </div>
+  return (
+  <div className="faq-header">
+    <div className="faq-container">
+      <div className="faq-title">FAQ Manager</div>
+      <input
+        placeholder="Please Enter User Name"
+        style={{width: '400px', position: 'relative', top: '10px'}}
+        value={keyword}
+        key="random1"
+        onChange={event => setKeyword(event.target.value)}
+      />
     </div>
-    );
-  }
+  </div>
+  );
+}
 
 export default Banner

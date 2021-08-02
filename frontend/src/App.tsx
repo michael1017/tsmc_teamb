@@ -5,6 +5,9 @@ import { IForm } from './types/form';
 import { Input, Table, Button } from 'element-react';
 import 'element-theme-default';
 import Banner from './components/Banner'
+import Detail from './components/Detail'
+import Delete from './components/Delete'
+import Edit from './components/Edit'
 
 
 import './App.css'
@@ -17,6 +20,10 @@ const App = () => {
   useEffect(() => {
     fetchForms()
   }, [])
+  const [dialogVisible, setDialogVisible] = useState(false)
+  const [dialogVisible2, setDialog2Visible] = useState(false)
+  const [dialogVisible3, setDialog3Visible] = useState(false)
+
 
   const updateInput = async (input:string) => {
     const filtered = formsDefault.filter(form => {
@@ -31,10 +38,41 @@ const App = () => {
     // getForms()
     //   .then(({ data: { forms } }: IForm[] | any) => setForms(forms))
     //   .catch((err: Error) => console.error(err))
-    console.log(getForms())
+    // console.log(getForms())
     setFormsDefault(getForms())
     setForms(getForms())
   }
+
+  interface Detail {
+    readonly _id?: string
+    readonly userprofile: {
+      username : string
+      departname: string
+      userid:string
+      phone:string
+    }
+    description:string
+    status: string
+    createdAt:Date
+    maintain_record: {
+      maintain_time:Date
+      maintain_description:string
+    }[]
+  }
+
+  const [detailData, setDetailData] = useState<Detail>({
+    _id: '',
+    userprofile: {
+      username : '',
+      departname: '',
+      userid:'',
+      phone:''
+    },
+    description:'',
+    status: '',
+    createdAt:new Date,
+    maintain_record:[]
+  })
 
   interface MyColumn {
     label: string,
@@ -48,12 +86,12 @@ const App = () => {
   >([{
     label: 'ID',
     prop: '_id',
-    width: 300,
+    width: 250,
   },
   {
     label: '姓名',
     prop: 'userprofile.username',
-    width: 200
+    width: 150
   },
   {
     label: '部門',
@@ -73,12 +111,40 @@ const App = () => {
   {
     label: '操作',
     prop: 'action',
-    width: 300,
+    width: 320,
     // eslint-disable-next-line react/display-name
-    render: ()=>{
-      return <span><Button type="primary" icon="document"></Button><Button type="primary" icon="edit"></Button><Button type="primary" icon="delete"></Button></span>
+    render: (row: any)=>{
+      return <span><Button type="primary" icon="document" onClick={detailOpen.bind(this, row)}></Button><Button type="primary" icon="edit" onClick={editOpen.bind(this, row)}></Button><Button type="primary" icon="delete" onClick={deleteOpen.bind(this, row)}></Button></span>
     }
   }]);
+
+  const detailVisible = (visible: boolean) : void => {
+    setDialogVisible(visible);
+  }
+  const deleteVisible = (visible: boolean) : void => {
+    setDialog2Visible(visible);
+  }
+  const editVisible = (visible: boolean) : void => {
+    setDialog3Visible(visible);
+  }
+
+  const detailOpen = (row: any) : void => {
+    setDialogVisible(true);
+    setDetailData(row);
+    // console.log(row);
+  }
+
+  const deleteOpen = (row: any) : void => {
+    setDialog2Visible(true);
+    setDetailData(row);
+    // console.log(row);
+  }
+
+  const editOpen = (row: any) : void => {
+    setDialog3Visible(true);
+    setDetailData(row);
+    // console.log(row);
+  }
 
 	return (
 		<main className="App">
@@ -95,6 +161,9 @@ const App = () => {
           border={true}
         />
       </div>
+      <Detail dialogVisible={dialogVisible} toggleVisible={detailVisible} showData={detailData}/>
+      <Delete dialogVisible={dialogVisible2} toggleVisible={deleteVisible} reportId={detailData._id}/>
+      <Edit dialogVisible={dialogVisible3} toggleVisible={editVisible} reportId={detailData._id}/>
 		</main>
 	)
 }

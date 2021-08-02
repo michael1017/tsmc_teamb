@@ -13,7 +13,7 @@ type IForm = {
     departname: string
     userid:string
     phone:string
-  } 
+  }
   description:string
   status: string
   createdAt:Date
@@ -22,4 +22,4 @@ type IForm = {
     maintain_description:string
   }[]
 }
-export type { IForm}
+export type { IForm }
