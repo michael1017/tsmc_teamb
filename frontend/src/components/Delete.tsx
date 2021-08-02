@@ -1,6 +1,6 @@
 import 'element-theme-default';
 import React, { Component } from 'react'
-import { Dialog, Button, Layout } from 'element-react';
+import { Dialog, Button} from 'element-react';
 
 class Delete extends Component<{dialogVisible: boolean, toggleVisible: (visible: boolean) => void, reportId: string | undefined}> {
 

@@ -19,10 +19,18 @@ class Edit extends Component<{dialogVisible: boolean, toggleVisible: (visible: b
   }
 
   editConfirm = () : void => {
-    console.log('Edit')
-
+    console.log(this.state.value)
+    console.log(this.state.descriptionValue)
     this.props.toggleVisible(false)
   }
+
+  text = (e:any) : void => {
+    this.setState({ descriptionValue: e });
+  };
+
+  select = (e:any) : void => {
+    this.setState({ value: e });
+  };
 
   render() {
     return(
@@ -37,7 +45,7 @@ class Edit extends Component<{dialogVisible: boolean, toggleVisible: (visible: b
           <Layout.Row gutter="20">
             <Layout.Col span="8">維修狀態</Layout.Col>
             <Layout.Col span="16">
-            <Select value={this.state.value} placeholder="選擇狀態">
+            <Select value={this.state.value} onChange={(e: React.FormEvent<HTMLInputElement>):void => this.select(e)} placeholder="選擇狀態">
               {
                 this.state.options.map(el => {
                   return <Select.Option key={el.value} label={el.label} value={el.value} />
@@ -53,6 +61,7 @@ class Edit extends Component<{dialogVisible: boolean, toggleVisible: (visible: b
                 type="textarea"
                 autosize={{ minRows: 2, maxRows: 4}}
                 placeholder="請輸入維修紀錄"
+                onChange={(e: React.FormEvent<HTMLInputElement>):void => this.text(e)}
               />
             </Layout.Col>
           </Layout.Row>

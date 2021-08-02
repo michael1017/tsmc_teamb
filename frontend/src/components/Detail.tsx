@@ -1,13 +1,11 @@
 import 'element-theme-default';
 import React, { Component } from 'react'
-import { Dialog, Button, Layout } from 'element-react';
+import { Dialog, Layout } from 'element-react';
 import moment from 'moment'
 
 
 class Detail extends Component<{dialogVisible: boolean, toggleVisible: (visible: boolean) => void, showData: any}> {
   render() {
-    // console.log(this.props.showData.userprofile);
-    // const user = this.props.showData.userprofile;
     return (
       <Dialog
         title={`ID ${this.props.showData._id}`}
@@ -53,10 +51,6 @@ class Detail extends Component<{dialogVisible: boolean, toggleVisible: (visible:
                         <Layout.Col span="8">{el.maintain_description}</Layout.Col>
                         <Layout.Col span="16">{moment(el.maintain_time).format('YYYY-MM-DD HH:mm:ss')}</Layout.Col>
                       </Layout.Row>
-              // this.state.options.map(el => {
-              //   return <Select.Option key={el.value} label={el.label} value={el.value} />
-              // })
-              // console.log(o.maintain_description)
             })}</Layout.Col>
           </Layout.Row>
         </Dialog.Body>

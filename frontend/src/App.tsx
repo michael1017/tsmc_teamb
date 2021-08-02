@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import FormItem from './components/FormItem'
 import { getForms, addForm, updateForm, deleteForm } from './API'
 import { IForm } from './types/form';
-import { Input, Table, Button } from 'element-react';
+import { Table, Button } from 'element-react';
 import 'element-theme-default';
 import Banner from './components/Banner'
 import Detail from './components/Detail'
@@ -13,7 +13,6 @@ import Edit from './components/Edit'
 import './App.css'
 
 const App = () => {
-
   const [formsDefault, setFormsDefault] = useState<IForm[]>([])
   const [forms, setForms] = useState<IForm[]>([])
   const [input, setInput] = useState('')
