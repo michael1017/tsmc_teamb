@@ -1,4 +1,23 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,12 +54,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.startFastify = void 0;
-var fetch = require("node-fetch");
-var fastify_1 = require("fastify");
+// const fetch = require("node-fetch");
+var fastify_1 = __importDefault(require("fastify"));
+var API = __importStar(require("./API"));
 var getFAQ_1 = require("./getFAQ");
-var server = fastify_1["default"]({
+var server = fastify_1.default({
     logger: { prettyPrint: true }
 });
 var startFastify = function (port) {
@@ -55,13 +78,13 @@ var startFastify = function (port) {
         });
     }); });
     server.post('/webhook', function (request, reply) { return __awaiter(void 0, void 0, void 0, function () {
-        var data, intent, userQuestion, ans, response;
+        var data, intent, userQuestion, ans, departname, userid, phone, description, username, formBody, form, response_1, error_1, response_2, response;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     data = request.body;
                     intent = data.queryResult.intent.displayName;
-                    if (!(intent === 'question_intent' || true)) return [3 /*break*/, 2];
+                    if (!(intent === 'question_intent')) return [3 /*break*/, 2];
                     userQuestion = data.queryResult.parameters['user_question'];
                     console.log('userQuestion: ', userQuestion);
                     return [4 /*yield*/, getFAQ_1.get_QA_answer_test(userQuestion)];
@@ -80,13 +103,58 @@ var startFastify = function (port) {
                                 {
                                     "text": {
                                         "text": [
-                                            "阿這樣是有解決你的問題? 請回答... \n 1. 有 \n 2. 沒有也"
+                                            "請問有解決您的問題嗎? 請回答... \n 1. 有 \n 2. 沒有"
                                         ]
                                     }
                                 }
                             ]
                         }];
                 case 2:
+                    if (!(intent === 'confirm_intent_y')) return [3 /*break*/, 6];
+                    departname = data.queryResult.outputContexts[1].parameters.department;
+                    userid = data.queryResult.outputContexts[1].parameters.id;
+                    phone = data.queryResult.outputContexts[1].parameters.phone;
+                    description = data.queryResult.outputContexts[1].parameters.user_question;
+                    username = data.originalDetectIntentRequest.payload.data.from.first_name || '';
+                    formBody = {
+                        userprofile: {
+                            username: username,
+                            departname: departname,
+                            userid: userid,
+                            phone: phone
+                        },
+                        description: description,
+                        status: 'new',
+                    };
+                    _a.label = 3;
+                case 3:
+                    _a.trys.push([3, 5, , 6]);
+                    return [4 /*yield*/, API.addForm(formBody)];
+                case 4:
+                    form = (_a.sent()).data.form;
+                    response_1 = {
+                        fulfillmentMessages: [
+                            {
+                                text: {
+                                    text: ["\u597D\u7684\uFF0C\u5DF2\u7D93\u70BA " + userid + " \u5831\u6848\u4E86, \u5831\u4FEE\u55AE\u865F\uFF1A " + form._id]
+                                }
+                            }
+                        ]
+                    };
+                    return [2 /*return*/, reply.status(200).send(response_1)];
+                case 5:
+                    error_1 = _a.sent();
+                    response_2 = {
+                        fulfillmentMessages: [
+                            {
+                                text: {
+                                    text: ["\u7CFB\u7D71\u932F\u8AA4\uFF0C\u8ACB\u7A0D\u5F8C\u518D\u8A66"]
+                                }
+                            }
+                        ]
+                    };
+                    return [2 /*return*/, reply.status(200).send(response_2)];
+                case 6:
                     response = {
                         fulfillmentMessages: [
                             {
