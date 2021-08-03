@@ -34,12 +34,13 @@ const App = () => {
 
 
   const fetchForms = (): void => {
-    // getForms()
-    //   .then(({ data: { forms } }: IForm[] | any) => setForms(forms))
-    //   .catch((err: Error) => console.error(err))
-    // console.log(getForms())
-    setFormsDefault(getForms())
-    setForms(getForms())
+    getForms().then(({ data: { forms } }: IForm[] | any) => {
+      setForms(forms);
+      setFormsDefault(forms);
+    }).catch((err: Error) => console.error(err))
+    console.log(getForms())
+    // setFormsDefault(getForms())
+    // setForms(getForms())
   }
 
   interface Detail {
