@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import { IForm } from './types/form'
 
-const API_URL = 'http://localhost:8888/api'
+const API_URL = 'https://8871f05b36ce.ngrok.io/api'
 
 const addForm = async (formBody: IForm): Promise<AxiosResponse<IForm>> => {
   try {

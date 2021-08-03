@@ -7,15 +7,38 @@ import { get_QA_answer_test } from './getFAQ'
 
 
 type WebHookRequest = {
+  responseId: string
   queryResult: {
     queryText: string
     action: string
     parameters: any
+    outputContexts:[
+      {
+        name: string
+        parameters: {
+          phone: string
+          category: string
+        }
+      },
+      {
+        name: string
+        parameters: {
+          category: string
+          phone: string,
+          id: string
+          department:string
+          user_question:string
+        }
+      }
+    ]
+
     intent: {
       name: string
       displayName: string
     }
+
   }
+
   originalDetectIntentRequest: {
     source: string
     payload: {
@@ -56,7 +79,7 @@ const startFastify: (port: number) => FastifyInstance<Server, IncomingMessage, S
     const data = request.body as WebHookRequest
     const intent = data.queryResult.intent.displayName
 
-    if (intent === 'question_intent' || true) {
+    if (intent === 'question_intent') {
 
       const userQuestion = data.queryResult.parameters['user_question']
       console.log('userQuestion: ', userQuestion)
@@ -85,47 +108,53 @@ const startFastify: (port: number) => FastifyInstance<Server, IncomingMessage, S
         ]
     }
     }
-  
 
-    // else if (intent === 'Get Computer Name - yes') {
-    //   const computerName = data.queryResult.parameters['computerName']
-    //   const username = data.originalDetectIntentRequest.payload.data.from.username || ''
-    //   console.log('computerName = ', computerName)
-    //   console.log('username = ', username)
-    //   // call Backend API to create the form
-    //   const formBody: IForm = {
-    //     username,
-    //     computerName,
-    //     status: 'new'
-    //   }
+    else if (intent === 'confirm_intent_y') {
+      const departname = data.queryResult.outputContexts[1].parameters.department
+      const userid = data.queryResult.outputContexts[1].parameters.id
+      const phone = data.queryResult.outputContexts[1].parameters.phone
+      const description = data.queryResult.outputContexts[1].parameters.user_question
+      const username = data.originalDetectIntentRequest.payload.data.from.first_name || ''
+      // call Backend API to create the form
+      const formBody: IForm = {
+        userprofile:
+        {
+          username,
+          departname,
+          userid,
+          phone
+        },
+        description,
+        status: 'new',
+      }
 
-    //   try {
-    //     const {
-    //       data: { form }
-    //     }: IForm | any = await API.addForm(formBody)
-    //     const response = {
-    //       fulfillmentMessages: [
-    //         {
-    //           text: {
-    //             text: [`已為電腦 ${computerName} 建立報修單, 報修單號： ${form._id}`]
-    //           }
-    //         }
-    //       ]
-    //     }
-    //     return reply.status(200).send(response)
-    //   } catch (error) {
-    //     const response = {
-    //       fulfillmentMessages: [
-    //         {
-    //           text: {
-    //             text: [`系統錯誤，請稍後再試`]
-    //           }
-    //         }
-    //       ]
-    //     }
-    //     return reply.status(200).send(response)
-    //   }
-    // }
+      try {
+        const {
+          data: { form }
+        }: IForm | any = await API.addForm(formBody)
+        const response = {
+          fulfillmentMessages: [
+            {
+              text: {
+                text: [`好的，已經為 ${userid} 報案了, 報修單號： ${form._id}`]
+              }
+            }
+          ]
+        }
+        return reply.status(200).send(response)
+      } catch (error) {
+        const response = {
+          fulfillmentMessages: [
+            {
+              text: {
+                text: [`系統錯誤，請稍後再試`]
+              }
+            }
+          ]
+        }
+        return reply.status(200).send(response)
+      }
+    }
 
     // default response
     const response = {

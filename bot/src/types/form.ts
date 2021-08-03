@@ -1,10 +1,15 @@
 type IForm = {
   readonly _id?: string
-  username: string
-  computerName: string
+  userprofile:
+  {
+    username: string
+    departname: string
+    userid:string
+    phone: string
+  }
+  description: string
   status: 'new' | 'processing' | 'completed'
-  readonly createdAt?: Date
-  readonly updatedAt?: Date
+  readonly createdAt?: Date  
 }
 
 export { IForm }
