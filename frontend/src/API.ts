@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios'
-import { IForm } from './types/form'
+import { IForm, IMaintainDescription, IStatus} from './types/form'
 
 
 const API_URL = 'http://localhost:8888/api'
@@ -61,31 +61,53 @@ const data2 : IForm = {
 // 	}
 // }
 
-const getForms = ():Array<IForm> => {
-	return[data1, data2]
-}
+// const getForms = ():Array<IForm> => {
+// 	return[data1, data2]
+// }
 
-const addForm = async (formBody: IForm): Promise<AxiosResponse<IForm>> => {
+const addMaintainDescription = async (id: string, maintain_description: IMaintainDescription): Promise<AxiosResponse<any>> => {
 	try {
-		const form = await axios.post(`${API_URL}/forms`, formBody)
+		const form = await axios.post(`${API_URL}/forms/${id}`, maintain_description)
 		return form
 	} catch (error) {
-		console.error(`POST /api/forms ERROR: ${error}`)
+		console.error(`POST /api/forms/${id} ERROR: ${error}`)
 		throw new Error(error)
 	}
 }
 
-const updateForm = async (formBody: IForm): Promise<AxiosResponse<IForm>> => {
+const getForms = async (): Promise<AxiosResponse<any>> => {
 	try {
-		const todo = await axios.put(`${API_URL}/forms/${formBody._id}`, formBody)
+		const forms = await axios.get(`${API_URL}/forms`)
+		console.log('forms = ', forms)
+		return forms
+	} catch (error) {
+		console.error(`GET /api/forms ERROR: ${error}`)
+		throw new Error(error)
+	}
+}
+
+const getRecords = async (id:string): Promise<AxiosResponse<any>> => {
+	try {
+		const records = await axios.get(`${API_URL}/forms/${id}`)
+		console.log('records = ', records)
+		return records
+	} catch (error) {
+		console.error(`GET /api/forms/${id} ERROR: ${error}`)
+		throw new Error(error)
+	}
+}
+
+
+const updateStatus = async (id: string, status: IStatus): Promise<AxiosResponse<any>> => {
+	try {
+		const todo = await axios.put(`${API_URL}/forms/${id}`, status)
 		return todo
 	} catch (error) {
-		console.error(`PUT /api/forms/${formBody._id} ERROR: ${error}`)
+		console.error(`PUT /api/forms/${id} ERROR: ${error}`)
 		throw new Error(error)
 	}
 }
-
-const deleteForm = async (id: string): Promise<AxiosResponse> => {
+const deleteForm = async (id: string): Promise<AxiosResponse<any>> => {
 	try {
 		const res = await axios.delete(`${API_URL}/forms/${id}`)
 		return res
@@ -95,4 +117,4 @@ const deleteForm = async (id: string): Promise<AxiosResponse> => {
 	}
 }
 
-export { getForms, addForm, updateForm, deleteForm }
+export { getForms, updateStatus, deleteForm, getRecords, addMaintainDescription}

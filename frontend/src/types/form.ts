@@ -15,11 +15,20 @@ type IForm = {
     phone:string
   }
   description:string
-  status: string
-  createdAt:Date
-  maintain_record: {
-    maintain_time:Date
-    maintain_description:string
-  }[]
+  status: 'new' | 'processing' | 'completed'
+  readonly createdAt ?: Date
 }
-export type { IForm }
+type IRecord = {
+  readonly _id?: string
+  formid: string
+  maintain_description: string
+  readonly createdAt ?: Date
+}
+type IMaintainDescription = {
+  maintain_description:string
+}
+
+type IStatus = {
+  status: 'new' | 'processing' | 'completed'
+}
+export type { IForm, IRecord, IMaintainDescription, IStatus}
