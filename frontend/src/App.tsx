@@ -33,20 +33,21 @@ const App = () => {
 
 
   const fetchForms = (): void => {
-    getForms().then(({ data: { forms } }: any) => {
-      setForms(forms.forms);
-      setFormsDefault(forms.forms);
-    }).catch((err: Error) => console.error(err))
-    console.log(getForms())
-    // setFormsDefault(getForms())
-    // setForms(getForms())
+    // getForms().then(({ data: { forms } }: any) => {
+    //   setForms(forms.forms);
+    //   setFormsDefault(forms.forms);
+    // }).catch((err: Error) => console.error(err))
+    // console.log(getForms())
+    setFormsDefault(getForms())
+    setForms(getForms())
   }
 
   const fetchRecords = (id:string) : void => {
-    getRecords(id).then(({ data: { detail } }: IDetail | any) => {
-      setDetailData(detail);
-    }).catch((err: Error) => console.error(err))
-    console.log(getForms())
+    // getRecords(id).then(({ data: { detail } }: IDetail | any) => {
+    //   setDetailData(detail);
+    // }).catch((err: Error) => console.error(err))
+    // console.log(getForms())
+    setDetailData(getRecords(id));
   }
 
   const [detailData, setDetailData] = useState<IDetail>({

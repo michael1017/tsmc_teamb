@@ -1,54 +1,46 @@
 import axios, { AxiosResponse } from 'axios'
-import { IForm, IMaintainDescription, IStatus} from './types/form'
+import { IDetail, IForm, IMaintainDescription, IRecord, IStatus} from './types/form'
 
 
 const API_URL = 'https://8871f05b36ce.ngrok.io/api'
 
-// const data1 : IForm = {
-//   _id : '1112223334444',
-//   userprofile: {
-//     username : '楊晶宇',
-//     departname: 'MQSI',
-//     userid:'120645',
-//     phone:'0909721399',
-//   },
-//   description:'for testing',
-//   status: 'unproccessed',
-//   createdAt: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
-//   maintain_record:[
-//     {
-//       maintain_time: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
-//       maintain_description:'for test',
-//     },
-//     {
-//       maintain_time: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
-//       maintain_description:'for test',
-//     }
-//   ]
-// }
+const form1 : IForm = {
+  _id : '1112223334444',
+  userprofile: {
+    username : '楊晶宇',
+    departname: 'MQSI',
+    userid:'120645',
+    phone:'0909721399',
+  },
+  description:'for testing',
+  status: 'unproccessed',
+  createdAt: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
+}
 
-// const data2 : IForm = {
-// 	_id : '1112223334444',
-// 	userprofile: {
-// 		username : '李曉明',
-// 		departname: 'MQSI',
-// 		userid:'120645',
-// 		phone:'0909721399',
-// 	},
-// 	description:'for testing',
-// 	status: 'unproccessed',
-// 	createdAt: new Date(2019, 0O5, 0O5, 17, 23, 42, 11),
-// 	maintain_record: [
-// 		{
-//       maintain_time: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
-//       maintain_description:'for test',
-// 		},
-// 		{
-//       maintain_time: new Date(2019, 0O5, 0O5, 17, 23, 42, 11),
-//       maintain_description:'for test',
-// 		}
-// 	]
-// }
+const record1 : IRecord = {
+	_id :'01234556',
+	formid:'7890e0e0',
+    maintain_description:'for test',
+	updatedAt:new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
+	createdAt:new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
+}
+const form2 : IForm = {
+	_id : '1112223334444',
+	userprofile: {
+		username : '李曉明',
+		departname: 'MQSI',
+		userid:'120645',
+		phone:'0909721399',
+	},
+	description:'for testing',
+	status: 'unproccessed',
+	createdAt: new Date(2019, 0O5, 0O5, 17, 23, 42, 11),
+}
+
+const detail1 : IDetail = {
+	form:form1,
+	records:[record1, record1]
+}
 
 // const getForms = async (): Promise<AxiosResponse<Array<IForm>>> => {
 // 	try {
@@ -75,27 +67,36 @@ const addMaintainDescription = async (id: string, maintain_description: IMaintai
 	}
 }
 
-const getForms = async (): Promise<AxiosResponse<any>> => {
-	try {
-		const forms = await axios.get(`${API_URL}/forms`)
-		console.log('forms = ', forms)
-		return forms
-	} catch (error) {
-		console.error(`GET /api/forms ERROR: ${error}`)
-		throw new Error(error)
-	}
+// const getForms = async (): Promise<AxiosResponse<any>> => {
+// 	try {
+// 		const forms = await axios.get(`${API_URL}/forms`)
+// 		console.log('forms = ', forms)
+// 		return forms
+// 	} catch (error) {
+// 		console.error(`GET /api/forms ERROR: ${error}`)
+// 		throw new Error(error)
+// 	}
+// }
+
+const getForms = ():Array<IForm> => {
+	return[form1, form2]
 }
 
-const getRecords = async (id:string): Promise<AxiosResponse<any>> => {
-	try {
-		const records = await axios.get(`${API_URL}/forms/${id}`)
-		console.log('records = ', records)
-		return records
-	} catch (error) {
-		console.error(`GET /api/forms/${id} ERROR: ${error}`)
-		throw new Error(error)
-	}
+// const getRecords = async (id:string): Promise<AxiosResponse<any>> => {
+// 	try {
+// 		const records = await axios.get(`${API_URL}/forms/${id}`)
+// 		console.log('records = ', records)
+// 		return records
+// 	} catch (error) {
+// 		console.error(`GET /api/forms/${id} ERROR: ${error}`)
+// 		throw new Error(error)
+// 	}
+// }
+
+const getRecords = (id:string): IDetail => {
+	return detail1
 }
+
 
 
 const updateStatus = async (id: string, status: IStatus): Promise<AxiosResponse<any>> => {
