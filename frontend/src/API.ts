@@ -67,35 +67,35 @@ const addMaintainDescription = async (id: string, maintain_description: IMaintai
 	}
 }
 
-// const getForms = async (): Promise<AxiosResponse<any>> => {
-// 	try {
-// 		const forms = await axios.get(`${API_URL}/forms`)
-// 		console.log('forms = ', forms)
-// 		return forms
-// 	} catch (error) {
-// 		console.error(`GET /api/forms ERROR: ${error}`)
-// 		throw new Error(error)
-// 	}
-// }
-
-const getForms = ():Array<IForm> => {
-	return[form1, form2]
+const getForms = async (): Promise<AxiosResponse<any>> => {
+	try {
+		const forms = await axios.get(`${API_URL}/forms`)
+		console.log('forms = ', forms)
+		return forms
+	} catch (error) {
+		console.error(`GET /api/forms ERROR: ${error}`)
+		throw new Error(error)
+	}
 }
 
-// const getRecords = async (id:string): Promise<AxiosResponse<any>> => {
-// 	try {
-// 		const records = await axios.get(`${API_URL}/forms/${id}`)
-// 		console.log('records = ', records)
-// 		return records
-// 	} catch (error) {
-// 		console.error(`GET /api/forms/${id} ERROR: ${error}`)
-// 		throw new Error(error)
-// 	}
+// const getForms = ():Array<IForm> => {
+// 	return[form1, form2]
 // }
 
-const getRecords = (id:string): IDetail => {
-	return detail1
+const getRecords = async (id:string): Promise<AxiosResponse<any>> => {
+	try {
+		const records = await axios.get(`${API_URL}/forms/${id}`)
+		console.log('records = ', records)
+		return records
+	} catch (error) {
+		console.error(`GET /api/forms/${id} ERROR: ${error}`)
+		throw new Error(error)
+	}
 }
+
+// const getRecords = (id:string): IDetail => {
+// 	return detail1
+// }
 
 
 

@@ -33,21 +33,22 @@ const App = () => {
 
 
   const fetchForms = (): void => {
-    // getForms().then(({ data: { forms } }: any) => {
-    //   setForms(forms.forms);
-    //   setFormsDefault(forms.forms);
-    // }).catch((err: Error) => console.error(err))
-    // console.log(getForms())
-    setFormsDefault(getForms())
-    setForms(getForms())
+    getForms().then(({ data: { forms } }: any) => {
+      setForms(forms);
+      setFormsDefault(forms);
+    }).catch((err: Error) => console.error(err))
+    console.log(getForms())
+    // setFormsDefault(getForms())
+    // setForms(getForms())
   }
 
   const fetchRecords = (id:string) : void => {
-    // getRecords(id).then(({ data: { detail } }: IDetail | any) => {
-    //   setDetailData(detail);
-    // }).catch((err: Error) => console.error(err))
+    getRecords(id).then(({data}: IDetail | any) => {
+      console.log('hi', data);
+      setDetailData(data);
+    }).catch((err: Error) => console.error(err))
     // console.log(getForms())
-    setDetailData(getRecords(id));
+    // setDetailData(getRecords(id));
   }
 
   const [detailData, setDetailData] = useState<IDetail>({
@@ -135,7 +136,7 @@ const App = () => {
   const editOpen = (row: any) : void => {
     setDialog3Visible(true);
     fetchRecords(row._id);
-    // console.log(row);
+    console.log(row._id);
   }
 
 	return (
