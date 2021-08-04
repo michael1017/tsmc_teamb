@@ -1,8 +1,10 @@
 import 'element-theme-default';
 import React, { Component } from 'react'
 import { Dialog, Button, Layout, Select, Input } from 'element-react';
+import {updateStatus, addMaintainDescription} from '../API'
+import { IMaintainDescription, IStatus} from '../types/form'
 
-class Edit extends Component<{dialogVisible: boolean, toggleVisible: (visible: boolean) => void, reportId: string | undefined}, {options: any, value: string,descriptionValue: string}> {
+class Edit extends Component<{dialogVisible: boolean, toggleVisible: (visible: boolean) => void, reportId: string}, {options: any, value: string,descriptionValue: string}> {
   state = {
     value: '',
     options: [{
@@ -22,6 +24,8 @@ class Edit extends Component<{dialogVisible: boolean, toggleVisible: (visible: b
     console.log(this.state.value)
     console.log(this.state.descriptionValue)
     this.props.toggleVisible(false)
+    addMaintainDescription(this.props.reportId, {maintain_description:this.state.descriptionValue})
+    updateStatus(this.props.reportId, {status:this.state.value})
   }
 
   text = (e:any) : void => {

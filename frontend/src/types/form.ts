@@ -7,7 +7,7 @@
 //   readonly updatedAt?: Date
 // }
 type IForm = {
-  readonly _id?: string
+  readonly _id: string
   readonly userprofile: {
     username : string
     departname: string
@@ -15,11 +15,11 @@ type IForm = {
     phone:string
   }
   description:string
-  status: 'new' | 'processing' | 'completed'
+  status: string
   readonly createdAt ?: Date
 }
 type IRecord = {
-  readonly _id?: string
+  readonly _id: string
   formid: string
   maintain_description: string
   readonly createdAt ?: Date
@@ -30,7 +30,7 @@ type IMaintainDescription = {
 }
 
 type IStatus = {
-  status: 'new' | 'processing' | 'completed'
+  status: string
 }
 
 type IDetail = {

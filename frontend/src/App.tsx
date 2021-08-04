@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import FormItem from './components/FormItem'
 import { getForms, deleteForm, getRecords } from './API'
-import { IForm, IDetail, IRecord } from './types/form';
+import { IForm, IDetail} from './types/form';
 import { Table, Button } from 'element-react';
 import 'element-theme-default';
 import Banner from './components/Banner'
@@ -11,7 +11,6 @@ import Edit from './components/Edit'
 
 
 import './App.css'
-
 const App = () => {
   const [formsDefault, setFormsDefault] = useState<IForm[]>([])
   const [forms, setForms] = useState<IForm[]>([])
@@ -34,9 +33,9 @@ const App = () => {
 
 
   const fetchForms = (): void => {
-    getForms().then(({ data: { forms } }: IForm[] | any) => {
-      setForms(forms);
-      setFormsDefault(forms);
+    getForms().then(({ data: { forms } }: any) => {
+      setForms(forms.forms);
+      setFormsDefault(forms.forms);
     }).catch((err: Error) => console.error(err))
     console.log(getForms())
     // setFormsDefault(getForms())
@@ -44,7 +43,10 @@ const App = () => {
   }
 
   const fetchRecords = (id:string) : void => {
-    
+    getRecords(id).then(({ data: { detail } }: IDetail | any) => {
+      setDetailData(detail);
+    }).catch((err: Error) => console.error(err))
+    console.log(getForms())
   }
 
   const [detailData, setDetailData] = useState<IDetail>({
@@ -118,33 +120,20 @@ const App = () => {
   }
 
   const detailOpen = (row: any) : void => {
+    fetchRecords(row._id);
     setDialogVisible(true);
-    const detail : Detail = {
-      _id: row._id,
-      userprofile: {
-        username : row.userprofile.username,
-        departname: row.userprofile.departname,
-        userid:row.userprofile.userid,
-        phone:row.userprofile.phone
-      },
-      description: row.description,
-      status: row.status,
-      createdAt: row.createAt,
-      maintain_record:[]
-    }
-    setDetailData(row);
     // console.log(row);
   }
 
   const deleteOpen = (row: any) : void => {
     setDialog2Visible(true);
-    setDetailData(row);
+    fetchRecords(row._id);
     // console.log(row);
   }
 
   const editOpen = (row: any) : void => {
     setDialog3Visible(true);
-    setDetailData(row);
+    fetchRecords(row._id);
     // console.log(row);
   }
 
@@ -164,8 +153,8 @@ const App = () => {
         />
       </div>
       <Detail dialogVisible={dialogVisible} toggleVisible={detailVisible} showData={detailData}/>
-      <Delete dialogVisible={dialogVisible2} toggleVisible={deleteVisible} reportId={detailData._id}/>
-      <Edit dialogVisible={dialogVisible3} toggleVisible={editVisible} reportId={detailData._id}/>
+      <Delete dialogVisible={dialogVisible2} toggleVisible={deleteVisible} reportId={detailData.form._id}/>
+      <Edit dialogVisible={dialogVisible3} toggleVisible={editVisible} reportId={detailData.form._id}/>
 		</main>
 	)
 }
