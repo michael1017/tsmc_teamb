@@ -23,6 +23,7 @@ type IRecord = {
   formid: string
   maintain_description: string
   readonly createdAt ?: Date
+  readonly updatedAt ?: Date
 }
 type IMaintainDescription = {
   maintain_description:string
@@ -31,4 +32,9 @@ type IMaintainDescription = {
 type IStatus = {
   status: 'new' | 'processing' | 'completed'
 }
-export type { IForm, IRecord, IMaintainDescription, IStatus}
+
+type IDetail = {
+  form : IForm
+  records: Array<IRecord>
+}
+export type { IForm, IRecord, IMaintainDescription, IStatus, IDetail}

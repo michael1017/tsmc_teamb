@@ -2,53 +2,53 @@ import axios, { AxiosResponse } from 'axios'
 import { IForm, IMaintainDescription, IStatus} from './types/form'
 
 
-const API_URL = 'http://localhost:8888/api'
+const API_URL = 'https://8871f05b36ce.ngrok.io/api'
 
-const data1 : IForm = {
-  _id : '1112223334444',
-  userprofile: {
-    username : '楊晶宇',
-    departname: 'MQSI',
-    userid:'120645',
-    phone:'0909721399',
-  },
-  description:'for testing',
-  status: 'unproccessed',
-  createdAt: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
-  maintain_record:[
-    {
-      maintain_time: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
-      maintain_description:'for test',
-    },
-    {
-      maintain_time: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
-      maintain_description:'for test',
-    }
-  ]
-}
+// const data1 : IForm = {
+//   _id : '1112223334444',
+//   userprofile: {
+//     username : '楊晶宇',
+//     departname: 'MQSI',
+//     userid:'120645',
+//     phone:'0909721399',
+//   },
+//   description:'for testing',
+//   status: 'unproccessed',
+//   createdAt: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
+//   maintain_record:[
+//     {
+//       maintain_time: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
+//       maintain_description:'for test',
+//     },
+//     {
+//       maintain_time: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
+//       maintain_description:'for test',
+//     }
+//   ]
+// }
 
-const data2 : IForm = {
-	_id : '1112223334444',
-	userprofile: {
-		username : '李曉明',
-		departname: 'MQSI',
-		userid:'120645',
-		phone:'0909721399',
-	},
-	description:'for testing',
-	status: 'unproccessed',
-	createdAt: new Date(2019, 0O5, 0O5, 17, 23, 42, 11),
-	maintain_record: [
-		{
-      maintain_time: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
-      maintain_description:'for test',
-		},
-		{
-      maintain_time: new Date(2019, 0O5, 0O5, 17, 23, 42, 11),
-      maintain_description:'for test',
-		}
-	]
-}
+// const data2 : IForm = {
+// 	_id : '1112223334444',
+// 	userprofile: {
+// 		username : '李曉明',
+// 		departname: 'MQSI',
+// 		userid:'120645',
+// 		phone:'0909721399',
+// 	},
+// 	description:'for testing',
+// 	status: 'unproccessed',
+// 	createdAt: new Date(2019, 0O5, 0O5, 17, 23, 42, 11),
+// 	maintain_record: [
+// 		{
+//       maintain_time: new Date(2018, 0O5, 0O5, 17, 23, 42, 11),
+//       maintain_description:'for test',
+// 		},
+// 		{
+//       maintain_time: new Date(2019, 0O5, 0O5, 17, 23, 42, 11),
+//       maintain_description:'for test',
+// 		}
+// 	]
+// }
 
 // const getForms = async (): Promise<AxiosResponse<Array<IForm>>> => {
 // 	try {

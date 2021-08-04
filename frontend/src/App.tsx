@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import FormItem from './components/FormItem'
-import { getForms, addForm, updateForm, deleteForm } from './API'
-import { IForm } from './types/form';
+import { getForms, deleteForm, getRecords } from './API'
+import { IForm, IDetail, IRecord } from './types/form';
 import { Table, Button } from 'element-react';
 import 'element-theme-default';
 import Banner from './components/Banner'
@@ -43,35 +43,24 @@ const App = () => {
     // setForms(getForms())
   }
 
-  interface Detail {
-    readonly _id?: string
-    readonly userprofile: {
-      username : string
-      departname: string
-      userid:string
-      phone:string
-    }
-    description:string
-    status: string
-    createdAt:Date
-    maintain_record: {
-      maintain_time:Date
-      maintain_description:string
-    }[]
+  const fetchRecords = (id:string) : void => {
+    
   }
 
-  const [detailData, setDetailData] = useState<Detail>({
-    _id: '',
-    userprofile: {
-      username : '',
-      departname: '',
-      userid:'',
-      phone:''
+  const [detailData, setDetailData] = useState<IDetail>({
+    form: {
+      _id : '',
+      userprofile: {
+        username : '',
+        departname: '',
+        userid:'',
+        phone:'',
+      },
+      description:'',
+      status: 'new' ,
+      createdAt : new Date
     },
-    description:'',
-    status: '',
-    createdAt:new Date,
-    maintain_record:[]
+    records:[]
   })
 
   interface MyColumn {
@@ -130,6 +119,19 @@ const App = () => {
 
   const detailOpen = (row: any) : void => {
     setDialogVisible(true);
+    const detail : Detail = {
+      _id: row._id,
+      userprofile: {
+        username : row.userprofile.username,
+        departname: row.userprofile.departname,
+        userid:row.userprofile.userid,
+        phone:row.userprofile.phone
+      },
+      description: row.description,
+      status: row.status,
+      createdAt: row.createAt,
+      maintain_record:[]
+    }
     setDetailData(row);
     // console.log(row);
   }
