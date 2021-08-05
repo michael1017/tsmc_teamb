@@ -1,0 +1,36 @@
+/* .App {
+  text-align: center;
+  width: 800px;
+  margin: 24px auto;
+} */
+
+table {
+  width: 100%;
+}
+
+.Card {
+  display: flex;
+  align-items: center;
+}
+
+.faq-header {
+  height: 90px;
+  background-color: #023047;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.faq-container {
+  width: 92%;
+  display: flex;
+  justify-content:space-between;
+}
+
+.faq-title {
+  color: #FFB703;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 50px;
+  line-height: 59px;
+}
