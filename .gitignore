@@ -128,3 +128,4 @@ dist
 # env
 *.env
 .env
+./bot/src/.env
