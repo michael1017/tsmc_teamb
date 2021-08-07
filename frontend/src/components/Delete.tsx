@@ -3,12 +3,12 @@ import React, { Component } from 'react'
 import { Dialog, Button} from 'element-react';
 import {deleteForm} from '../API'
 
-class Delete extends Component<{dialogVisible: boolean, toggleVisible: (visible: boolean) => void, reportId: string}> {
+class Delete extends Component<{dialogVisible: boolean, toggleVisible: (visible: boolean) => void, reportId: string, fetchForms:()=>void}> {
 
   deleteConfirm = () : void => {
     console.log('Delete')
     console.log(this.props.reportId)
-    deleteForm(this.props.reportId)
+    deleteForm(this.props.reportId).then(()=>{this.props.fetchForms();})
     this.props.toggleVisible(false)
   }
   render() {
