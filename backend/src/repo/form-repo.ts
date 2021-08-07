@@ -22,7 +22,7 @@ class FormRepoImpl implements FormRepo {
   }
 
   async getFormsbyusername(username: string): Promise<Array<IForm>> {
-    return Form.find({"userprofile.username": username})
+    return Form.find({ 'userprofile.username': username })
   }
   async getForm(id: string): Promise<IForm | null> {
     return Form.findById(id)
