@@ -45,14 +45,14 @@ ps. Azure service id可在My knowledge bases頁面可見<br>
 <img src="https://github.com/michael1017/tsmc_teamb/blob/dev/pics/bot-4.jpg" width="90%">
 
 #### 4. Chatbot 架構
-<img src="https://github.com/michael1017/tsmc_teamb/blob/dev/pics/bot-5.png" width="90%">
-* **welcome intent**: 當使用者對 Chatbot 打招呼，Chatbot 詢問使用者遇到什麼問題
-* **question intent**: 接受使用者的問題後從 Azure QnA Maker 尋找問題答案，並將答案回傳給使用者
-* **continue intent**: 詢問使用者是否得到幫助
-* **ask report intent**: 詢問使用者是否需要報案
-* **report intents**: 詢問使用者工號，手機電話和部門名稱
-* **confirm intent**: 詢問使用者輸入資料是否正確，若資料不正確則開始重新輸入
-* **fallbacks**: 當 Chatbot 無法辨識使用者意圖，則會進入 fallback 詢問使用者相同問題，並提供選項讓使用者回答
+<img src="https://github.com/michael1017/tsmc_teamb/blob/dev/pics/bot-5.png" width="90%"><br>
+* **welcome intent**: 當使用者對 Chatbot 打招呼，Chatbot 詢問使用者遇到什麼問題<br>
+* **question intent**: 接受使用者的問題後從 Azure QnA Maker 尋找問題答案，並將答案回傳給使用者<br>
+* **continue intent**: 詢問使用者是否得到幫助<br>
+* **ask report intent**: 詢問使用者是否需要報案<br>
+* **report intents**: 詢問使用者工號，手機電話和部門名稱<br>
+* **confirm intent**: 詢問使用者輸入資料是否正確，若資料不正確則開始重新輸入<br>
+* **fallbacks**: 當 Chatbot 無法辨識使用者意圖，則會進入 fallback 詢問使用者相同問題，並提供選項讓使用者回答<br>
   
 ### (三) back end<br>
 ```
