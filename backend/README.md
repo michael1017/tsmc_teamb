@@ -2,7 +2,7 @@
 
 use Fastify, Typescript and MongoDB
 
-## API spec of it helpdesk
+## API spec of IT helpdesk
 
 ```
 http://localhost:8888/documentation/
