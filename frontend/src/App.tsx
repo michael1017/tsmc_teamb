@@ -155,7 +155,7 @@ const App = () => {
         />
       </div>
       <Detail dialogVisible={dialogVisible} toggleVisible={detailVisible} showData={detailData}/>
-      <Delete dialogVisible={dialogVisible2} toggleVisible={deleteVisible} reportId={detailData.form._id}/>
+      <Delete dialogVisible={dialogVisible2} toggleVisible={deleteVisible} reportId={detailData.form._id} fetchForms = {fetchForms}/>
       <Edit dialogVisible={dialogVisible3} toggleVisible={editVisible} reportId={detailData.form._id}/>
 		</main>
 	)
