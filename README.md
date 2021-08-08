@@ -7,9 +7,10 @@
 ```
 (1)首先進入frontend資料夾: cd frontend/
 (2)執行指令：npm install
-(3)執行指令: npm build
+(3)執行指令: npm run build
 (4)執行指令: npm run start
 ```
 做完上述步驟後，便能打開客服人員的操作介面: FAQ Manerger <br>
+
   
 
