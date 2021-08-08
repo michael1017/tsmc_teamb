@@ -16,8 +16,8 @@
 ### (二) back end<br>
 ```
 (1)backend: cd backend
-(2)執行指令：npm install
-(3)執行指令: npm run build
+(2)執行指令: npm install
+(3)執行指令: tsc
 (4)執行指令: npm run start
 ```
-API Spec : https://8871f05b36ce.ngrok.io/documentation/static/
+API Spec : https://8871f05b36ce.ngrok.io/documentation/
