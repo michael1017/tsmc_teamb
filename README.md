@@ -13,4 +13,11 @@
 做完上述步驟後，便能打開客服人員的操作介面: FAQ Manerger (下圖為操作說明)<br>
 <img src="https://github.com/michael1017/tsmc_teamb/blob/dev/pics/front%20end.jpg" width="90%"><br>
   
-
+### (二) back end<br>
+```
+(1)backend: cd backend
+(2)執行指令：npm install
+(3)執行指令: npm run build
+(4)執行指令: npm run start
+```
+API Spec : https://8871f05b36ce.ngrok.io/documentation/static/
