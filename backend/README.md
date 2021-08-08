@@ -1,8 +1,12 @@
-https://hackmd.io/Or3d3QdXSQqsgf-RC51guw?view
-
 # Backend
 
 use Fastify, Typescript and MongoDB
+
+## API spec of it helpdesk
+
+```
+http://localhost:8888/documentation/
+```
 
 ## Available Scripts
 
