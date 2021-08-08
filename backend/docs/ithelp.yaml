@@ -1,0 +1,249 @@
+openapi: '3.0.2'
+info:
+  title: API spec of IT helpdesk
+  version: '1.0'
+  description: API spec of IT helpdesk for handling data transfer between frontend and backend
+servers:
+  - url: http://localhost:8888/api
+    description: API endpoint of backend
+
+paths:
+  /forms:
+    get:
+      tags:
+        - forms
+      summary: Get all repair forms 
+      description: Get all repair forms
+      responses:
+        '200':
+          description: a JSON Array of all forms infos
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    forms:
+                      type: array
+                      description: list of all forms
+                      items:
+                        $ref: "#/components/schemas/forms"
+
+    post:
+      tags:
+        - forms
+      summary: Post new reapir form 
+      description: Post a new reapir form
+      requestBody:
+        required: true
+        content:
+          applicationapplication/json:
+              schema:
+                type: object
+                properties:
+                  userprofile:
+                    type: object
+                    properties: 
+                      username: 
+                        type: string
+                        description: username
+                      departname: 
+                        type: string
+                        description: TSMC department
+                      userid:
+                        type: string
+                        description: TSMC ID
+                      phone:
+                        type: string
+                        description: phone number
+                  status:
+                    type: string
+                  description:
+                    type: string
+                    description: problem description
+                  
+      responses:
+        '201':
+          description: Successfully post a new repair form
+
+  /forms/{id}: 
+    get:
+      tags:
+        - forms
+      summary: Get a reapir form
+      description: Get a reapir form and its maintain records
+      parameters: 
+        - name: id
+          in: path
+          description: id of the repair form
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: info of the repair form and a JSON Array of all maintain records of the repair form
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    forms:
+                      type: object
+                      description: info of the form
+                      example:
+                        $ref: "#/components/schemas/forms"
+                    records:
+                      type: array
+                      description: maintain records of the repair form
+                      items:
+                        $ref: "#/components/schemas/records"
+
+    put:
+      tags:
+        - forms
+      summary: Update a reapir form
+      description: Update a repair form status
+      parameters: 
+        - name: id
+          in: path
+          description: id of the repair form
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Update the status of the repair form
+          content:
+            application/json:
+                schema:
+                  $ref: "#/components/schemas/forms"
+
+    delete:
+      tags:
+        - forms
+      summary: Delete a reapir form
+      description: Delete a repair form
+      parameters: 
+        - name: id
+          in: path
+          description: id of the repair form
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Successfully delete a repair form
+    post:
+      tags:
+        - records
+      summary: Post a new maintain record
+      description: Post new maintain record of a form
+      requestBody:
+        required: true
+        content:
+          applicationapplication/json:
+              schema:
+                type: object
+                properties:
+                  formid:
+                    type: string
+                    description: id of the form which you want to add this maintain record
+                  maintain_description:
+                    type: string
+                    description: maintain record description
+      parameters: 
+        - name: id
+          in: path
+          description: id of the repair form
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Post a new maintain record to the form
+
+  /forms/{username}:
+    get:
+      tags:
+        - forms
+      summary: Get forms by username
+      description: Get forms by username
+      parameters: 
+        - in: path
+          name: username
+          description: username to search
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: a JSON Array of all forms infos of the user
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    forms:
+                      type: array
+                      description: list of all forms of the user
+                      items:
+                        $ref: "#/components/schemas/forms"
+          
+          
+components:
+  schemas:
+    forms:
+      type: object
+      properties:
+        userprofile:
+          type: object
+          properties: 
+            username: 
+              type: string
+              description: username
+            departname: 
+              type: string
+              description: TSMC department
+            userid:
+              type: string
+              description: TSMC ID
+            phone:
+              type: string
+              description: phone number
+        status:
+          type: string
+          description: new | processing | completed
+        _id:
+          type: string
+          description: readonly id of this form
+        description:
+          type: string
+          description: problem description
+        createdAt:
+          type: string
+          format: date-time
+          description: create time of this form
+          example: "2021-08-08T07:17:40.541Z"
+        updatedAt:
+          type: string
+          format: date-time
+          description: update time of this form
+          example: "2021-08-08T07:18:40.541Z"
+    records:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: readonly id of this record
+        formid:
+          type: string
+          description: form id of this record
+        maintain_description:
+          type: string
+          description: description of this record
+        createdAt:
+          type: string
+          format: date-time
+          description: create time of this record
+          example: "2021-08-08T07:17:40.541Z"
+          
+      

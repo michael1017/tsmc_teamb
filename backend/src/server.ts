@@ -2,6 +2,7 @@ import fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
 import { establishConnection } from './plugins/mongodb'
 import { FormRouter } from './route/form'
+import fastifySwagger from 'fastify-swagger'
 
 const server: FastifyInstance<Server, IncomingMessage, ServerResponse> = fastify({
   logger: { prettyPrint: true }
@@ -21,6 +22,17 @@ const startFastify: (port: number) => FastifyInstance<Server, IncomingMessage, S
   })
 
   server.register(FormRouter, { prefix: '/api' })
+
+  server.register(fastifySwagger, {
+    mode: 'static',
+    routePrefix: '/documentation',
+    exposeRoute: true,
+    specification: {
+      path: 'docs/ithelp.yaml',
+      postProcessor: (_) => _,
+      baseDir: ''
+    }
+  })
 
   return server
 }
