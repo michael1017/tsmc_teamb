@@ -4,6 +4,5 @@
 <img src="https://github.com/michael1017/tsmc_teamb/blob/dev/pics/%E9%A1%8C%E7%9B%AE%E8%88%87%E5%85%A7%E5%AE%B9.jpg" width="50%"><br>
 接下來將以**front end、bot、backend**三個主題介紹實作方式：<br>
 ### (一) front end<br>
-  (1)首先進入frontend資料夾:<br>
-      cd frontend/<>
+  (1)首先進入frontend資料夾: cd frontend/ <br>
 
