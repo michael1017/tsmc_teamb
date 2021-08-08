@@ -7,7 +7,10 @@ use Fastify, Typescript and MongoDB
 ```
 http://localhost:8888/documentation/
 ```
-
+or
+```
+https://8871f05b36ce.ngrok.io/documentation/
+```
 ## Available Scripts
 
 ```
