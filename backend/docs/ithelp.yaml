@@ -31,8 +31,8 @@ paths:
     post:
       tags:
         - forms
-      summary: Post new reapir form 
-      description: Post a new reapir form
+      summary: Post new repair form 
+      description: Post a new repair form
       requestBody:
         required: true
         content:
@@ -69,8 +69,8 @@ paths:
     get:
       tags:
         - forms
-      summary: Get a reapir form
-      description: Get a reapir form and its maintain records
+      summary: Get a repair form
+      description: Get a repair form and its maintain records
       parameters: 
         - name: id
           in: path
@@ -100,7 +100,7 @@ paths:
     put:
       tags:
         - forms
-      summary: Update a reapir form
+      summary: Update a repair form
       description: Update a repair form status
       parameters: 
         - name: id
@@ -120,7 +120,7 @@ paths:
     delete:
       tags:
         - forms
-      summary: Delete a reapir form
+      summary: Delete a repair form
       description: Delete a repair form
       parameters: 
         - name: id
