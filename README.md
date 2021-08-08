@@ -5,10 +5,10 @@
 接下來將以**front end、bot、backend**三個主題介紹實作方式：<br>
 ### (一) front end<br>
 ```
-(1)首先進入frontend資料夾: cd frontend/ <br>
-(2)執行指令：npm install<br>
-(3)執行指令: npm build<br>
-(4)執行指令: npm run start<br>
+(1)首先進入frontend資料夾: cd frontend/
+(2)執行指令：npm install
+(3)執行指令: npm build
+(4)執行指令: npm run start
 ```
   
 
