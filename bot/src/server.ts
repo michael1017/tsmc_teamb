@@ -5,14 +5,13 @@ import * as API from './API'
 import { IForm } from './types/form'
 import { get_QA_answer_test } from './getFAQ'
 
-
 type WebHookRequest = {
   responseId: string
   queryResult: {
     queryText: string
     action: string
     parameters: any
-    outputContexts:[
+    outputContexts: [
       {
         name: string
         parameters: {
@@ -24,10 +23,10 @@ type WebHookRequest = {
         name: string
         parameters: {
           category: string
-          phone: string,
+          phone: string
           id: string
-          department:string
-          user_question:string
+          department: string
+          user_question: string
         }
       }
     ]
@@ -36,7 +35,6 @@ type WebHookRequest = {
       name: string
       displayName: string
     }
-
   }
 
   originalDetectIntentRequest: {
@@ -74,42 +72,32 @@ const startFastify: (port: number) => FastifyInstance<Server, IncomingMessage, S
     return reply.status(200).send({ msg: 'pong' })
   })
 
-
   server.post('/webhook', async (request: FastifyRequest, reply: FastifyReply) => {
     const data = request.body as WebHookRequest
     const intent = data.queryResult.intent.displayName
 
     if (intent === 'question_intent') {
-
       const userQuestion = data.queryResult.parameters['user_question']
       console.log('userQuestion: ', userQuestion)
 
-     // 按照格式貼入剛剛要記錄的 Host, Post
+      // 按照格式貼入剛剛要記錄的 Host, Post
       const ans = await get_QA_answer_test(userQuestion)
       console.log('qnAnswer: ', ans)
       return {
-        "fulfillmentMessages": [
-            {
-                "text": {
-                    "text": [
-                        ans
-                    ]
-
-                }
-            },
-            {
-                "text": {
-                    "text": [
-                        "請問有解決您的問題嗎? 請回答... \n 1. 有 \n 2. 沒有"
-                    ]
-
-                }
+        fulfillmentMessages: [
+          {
+            text: {
+              text: [ans]
             }
+          },
+          {
+            text: {
+              text: ['請問有解決您的問題嗎? 請回答... \n 1. 有 \n 2. 沒有']
+            }
+          }
         ]
-    }
-    }
-
-    else if (intent === 'confirm_intent_y') {
+      }
+    } else if (intent === 'confirm_intent_y') {
       const departname = data.queryResult.outputContexts[1].parameters.department
       const userid = data.queryResult.outputContexts[1].parameters.id
       const phone = data.queryResult.outputContexts[1].parameters.phone
@@ -117,15 +105,14 @@ const startFastify: (port: number) => FastifyInstance<Server, IncomingMessage, S
       const username = data.originalDetectIntentRequest.payload.data.from.first_name || ''
       // call Backend API to create the form
       const formBody: IForm = {
-        userprofile:
-        {
+        userprofile: {
           username,
           departname,
           userid,
           phone
         },
         description,
-        status: 'new',
+        status: 'new'
       }
 
       try {

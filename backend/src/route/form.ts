@@ -4,7 +4,6 @@ import { FormRepoImpl } from './../repo/form-repo'
 import { IRecord } from '../types/maintain_record'
 import { RecordRepoImpl } from '../repo/maintain_record-repo'
 
-
 const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: (error?: Error) => void) => {
   const formRepo = FormRepoImpl.of()
   const recordRepo = RecordRepoImpl.of()
@@ -13,7 +12,7 @@ const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
     id: string
   }
   interface UsParam {
-    username:string
+    username: string
   }
 
   server.get('/forms', opts, async (request, reply) => {
@@ -66,14 +65,13 @@ const FormRouter = (server: FastifyInstance, opts: RouteShorthandOptions, done: 
       const formBody: IRecord = request.body as IRecord
       formBody.formid = formid
       const record: IRecord = await recordRepo.addRecord(formBody)
-      
-      return reply.status(201).send({record})
+
+      return reply.status(201).send({ record })
     } catch (error) {
       console.error(`POST /forms${request.params.id} Error: ${error}`)
       return reply.status(500).send(`[Server Error]: ${error}`)
     }
   })
-
 
   server.put<{ Params: IdParam }>('/forms/:id', opts, async (request, reply) => {
     try {

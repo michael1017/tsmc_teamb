@@ -1,15 +1,14 @@
 type IForm = {
   readonly _id?: string
-  userprofile:
-  {
+  userprofile: {
     username: string
     departname: string
-    userid:string
+    userid: string
     phone: string
   }
   description: string
   status: 'new' | 'processing' | 'completed'
-  readonly createdAt?: Date  
+  readonly createdAt?: Date
 }
 
 export { IForm }
