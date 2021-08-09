@@ -42,21 +42,6 @@ const detail1 : IDetail = {
 	records:[record1, record1]
 }
 
-// const getForms = async (): Promise<AxiosResponse<Array<IForm>>> => {
-// 	try {
-// 		const forms = await axios.get(`${API_URL}/forms`)
-// 		console.log('forms = ', forms)
-// 		return forms
-// 	} catch (error) {
-// 		console.error(`GET /api/forms ERROR: ${error}`)
-// 		throw new Error(error)
-// 	}
-// }
-
-// const getForms = ():Array<IForm> => {
-// 	return[data1, data2]
-// }
-
 const addMaintainDescription = async (id: string, maintain_description: IMaintainDescription): Promise<AxiosResponse<any>> => {
 	try {
 		const form = await axios.post(`${API_URL}/forms/${id}`, maintain_description)
@@ -78,9 +63,6 @@ const getForms = async (): Promise<AxiosResponse<any>> => {
 	}
 }
 
-// const getForms = ():Array<IForm> => {
-// 	return[form1, form2]
-// }
 
 const getRecords = async (id:string): Promise<AxiosResponse<any>> => {
 	try {
@@ -92,12 +74,6 @@ const getRecords = async (id:string): Promise<AxiosResponse<any>> => {
 		throw new Error(error)
 	}
 }
-
-// const getRecords = (id:string): IDetail => {
-// 	return detail1
-// }
-
-
 
 const updateStatus = async (id: string, status: IStatus): Promise<AxiosResponse<any>> => {
 	try {

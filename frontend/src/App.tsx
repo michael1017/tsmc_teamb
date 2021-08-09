@@ -37,18 +37,12 @@ const App = () => {
       setForms(forms);
       setFormsDefault(forms);
     }).catch((err: Error) => console.error(err))
-    console.log(getForms())
-    // setFormsDefault(getForms())
-    // setForms(getForms())
   }
 
   const fetchRecords = (id:string) : void => {
     getRecords(id).then(({data}: IDetail | any) => {
-      console.log('hi', data);
       setDetailData(data);
     }).catch((err: Error) => console.error(err))
-    // console.log(getForms())
-    // setDetailData(getRecords(id));
   }
 
   const [detailData, setDetailData] = useState<IDetail>({
@@ -124,19 +118,16 @@ const App = () => {
   const detailOpen = (row: any) : void => {
     fetchRecords(row._id);
     setDialogVisible(true);
-    // console.log(row);
   }
 
   const deleteOpen = (row: any) : void => {
     setDialog2Visible(true);
     fetchRecords(row._id);
-    // console.log(row);
   }
 
   const editOpen = (row: any) : void => {
     setDialog3Visible(true);
     fetchRecords(row._id);
-    console.log(row._id);
   }
 
 	return (
