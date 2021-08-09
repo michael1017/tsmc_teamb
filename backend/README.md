@@ -25,6 +25,13 @@ docker build -t b-backend .
 ```
 docker run -d -p 8888:8888 --name b-backend b-backend
 ```
+## Feature tests
+
+run all feature test cases
+
+```
+npm run test
+```
 
 ## Available Scripts
 

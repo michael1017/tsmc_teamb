@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import { MongoMemoryServer } from 'mongodb-memory-server'
-// import * as F from 'fp-ts/function'
-// import * as TE from 'fp-ts/TaskEither'
+ import * as F from 'fp-ts/function'
+ import * as TE from 'fp-ts/TaskEither'
 
 const mongod = new MongoMemoryServer()
 
@@ -27,24 +27,24 @@ export const connect = async (): Promise<void> => {
  * Close db connection
  */
 export const closeDatabase: () => Promise<void> = async () => {
-  // const dropDbTE = TE.tryCatch(
-  //     () => mongoose.connection.dropDatabase(),
-  //     (e) => new Error(`Drop DB error: ${e}`)
-  // )
-  // const connCloseTE = TE.tryCatch(
-  //     () => mongoose.connection.close(),
-  //     (e) => new Error(`Connection closing error: ${e}`)
-  // )
-  // const dbStopTE = TE.tryCatch(
-  //     () => mongod.stop(),
-  //     (e) => new Error(`DB stopping error: ${e}`)
-  // )
-  // const p = F.pipe(
-  //     TE.bindTo('dropDb')(dropDbTE),
-  //     TE.bind('connClose', () => connCloseTE),
-  //     TE.bind('dbStop', () => dbStopTE),
-  //     TE.map(({ dropDb, connClose, dbStop }) => dbStop)
-  // )
+   const dropDbTE = TE.tryCatch(
+      () => mongoose.connection.dropDatabase(),
+       (e) => new Error(`Drop DB error: ${e}`)
+   )
+   const connCloseTE = TE.tryCatch(
+       () => mongoose.connection.close(),
+       (e) => new Error(`Connection closing error: ${e}`)
+   )
+   const dbStopTE = TE.tryCatch(
+       () => mongod.stop(),
+       (e) => new Error(`DB stopping error: ${e}`)
+   )
+   const p = F.pipe(
+       TE.bindTo('dropDb')(dropDbTE),
+       TE.bind('connClose', () => connCloseTE),
+       TE.bind('dbStop', () => dbStopTE),
+       TE.map(({ dropDb, connClose, dbStop }) => dbStop)
+   )
 
   // await TE.match(
   //     (e) => console.log(`InMemMongo Error: ${e}`),
