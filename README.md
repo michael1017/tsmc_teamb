@@ -1,10 +1,10 @@
-# 智能IT客服
+# helpdesk智能IT客服
 
 ## 介紹
 
 此 project 主要是架設一個 智能IT客服系統，用戶能夠透過與 chatbot 詢問問題，得到問題的解法，若資料庫目前沒有問題的解法，chatbot 能夠幫助客戶完成報案，並將資料送至後端資料庫，客服人員能夠操作前端網頁去查看、編輯、刪除報案資料，如下圖:
 
-![](pics/chart01.jpg)
+![](pics/chart01.png)
 
 接下來將以 **front end、bot、backend** 三個主題介紹實作方式：
 
