@@ -10,5 +10,17 @@ services:
             - mongo
     mongo:
         image: mongo
+        container_name: b-mongo
         volumes:
             - ./db:/data/db
+    bot:
+        build: ./bot
+        container_name: b-bot
+        ports:
+            - "6666:6666"
+        environment: 
+            - API_URL=
+            - QNAMAKER_KEY=
+            - QNAMAKER_ENDPOINT=
+            - kbid=
+    
