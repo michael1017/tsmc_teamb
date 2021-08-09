@@ -24,6 +24,5 @@ module.exports = {
     }]
   ],
   collectCoverage: true,
-  coverageReporters: ['cobertura'],
   coverageDirectory: "coverage"
 };
