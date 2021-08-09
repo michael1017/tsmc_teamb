@@ -11,6 +11,12 @@ or
 ```
 https://8871f05b36ce.ngrok.io/documentation/
 ```
+## Feature tests
+```
+npm run test
+```
+run all feature test cases
+
 ## Available Scripts
 
 ```
