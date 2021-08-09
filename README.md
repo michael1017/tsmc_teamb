@@ -88,6 +88,8 @@ ps. Azure service id 可在 My knowledge bases 頁面可見
   
 ## (三) backend
 
+* 後端以Fastify框架、Typescript與MongoDB實作
+
 ```
 (1) backend: cd backend
 (2) 執行指令: npm install
@@ -95,4 +97,10 @@ ps. Azure service id 可在 My knowledge bases 頁面可見
 (4) 執行指令: npm run start
 ```
 
-API Spec : https://8871f05b36ce.ngrok.io/documentation/
+* 使用fastify-swagger生成API Spec
+
+  API Spec : https://8871f05b36ce.ngrok.io/documentation/
+
+![](pics/backend01.PNG)
+
+* 使用 Jest 做 API 單元測試
