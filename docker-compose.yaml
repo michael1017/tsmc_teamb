@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+    backend:
+        build: ./backend
+        container_name: b-backend
+        ports:
+            - "8888:8888"
+        depends_on:
+            - mongo
+    mongo:
+        image: mongo
+        volumes:
+            - ./db:/data/db
