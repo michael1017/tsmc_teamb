@@ -10,7 +10,7 @@ const server: FastifyInstance<Server, IncomingMessage, ServerResponse> = fastify
 
 const startFastify: (port: number) => FastifyInstance<Server, IncomingMessage, ServerResponse> = (port) => {
   server.register(require('fastify-cors'), {})
-  server.listen(port, (err, _) => {
+  server.listen(port, '0.0.0.0', (err, _) => {
     if (err) {
       console.error(err)
     }
