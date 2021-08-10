@@ -101,6 +101,6 @@ ps. Azure service id 可在 My knowledge bases 頁面可見
 
   API Spec : https://8871f05b36ce.ngrok.io/documentation/
 
-![](pics/backend01.PNG)
+![](pics/backend01.JPG)
 
 * 使用 Jest 做 API 單元測試

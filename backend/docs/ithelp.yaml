@@ -161,7 +161,7 @@ paths:
         '201':
           description: Post a new maintain record to the form
 
-  /forms/{username}:
+  /forms/username={username}:
     get:
       tags:
         - forms
