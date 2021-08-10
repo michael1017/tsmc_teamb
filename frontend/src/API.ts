@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios'
 import { IDetail, IForm, IMaintainDescription, IRecord, IStatus} from './types/form'
 
 
-const API_URL = 'https://8871f05b36ce.ngrok.io/api'
+const API_URL = process.env.API_URL || 'https://8871f05b36ce.ngrok.io/api'
 
 const form1 : IForm = {
   _id : '1112223334444',

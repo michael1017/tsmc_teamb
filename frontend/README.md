@@ -2,6 +2,18 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## build frontend image
+
+```
+docker build -t b-frontend .
+```
+
+## run frontend container
+
+```
+docker run -d -p 3000:3000 --name b-frontend b-frontend
+```
+
 ## Available Scripts
 
 In the project directory, you can run:

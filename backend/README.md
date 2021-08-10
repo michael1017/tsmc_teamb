@@ -7,15 +7,31 @@ use Fastify, Typescript and MongoDB
 ```
 http://localhost:8888/documentation/
 ```
+
 or
+
 ```
 https://8871f05b36ce.ngrok.io/documentation/
 ```
+
+## Build backend image
+
+```
+docker build -t b-backend .
+```
+
+## Run backend container
+
+```
+docker run -d -p 8888:8888 --name b-backend b-backend
+```
 ## Feature tests
+
+run all feature test cases
+
 ```
 npm run test
 ```
-run all feature test cases
 
 ## Available Scripts
 

@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+    backend:
+        build: ./backend
+        container_name: b-backend
+        ports:
+            - "8888:8888"
+        depends_on:
+            - mongo
+    mongo:
+        image: mongo
+        container_name: b-mongo
+        volumes:
+            - ./db:/data/db
+    bot:
+        build: ./bot
+        container_name: b-bot
+        ports:
+            - "6666:6666"
+        environment: 
+            - API_URL=
+            - QNAMAKER_KEY=
+            - QNAMAKER_ENDPOINT=
+            - kbid=
+    frontend:
+        build: ./frontend
+        container_name: b-frontend
+        ports: 
+            - "3000:3000"
+        environment: 
+            - API_URL=
+    
