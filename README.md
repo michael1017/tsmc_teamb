@@ -104,3 +104,5 @@ ps. Azure service id 可在 My knowledge bases 頁面可見
 ![](pics/backend01.JPG)
 
 * 使用 Jest 做 API 單元測試
+* ![image](https://user-images.githubusercontent.com/32125966/128889749-43f3c8a0-4577-49be-9704-07390fb71d13.png)
+
