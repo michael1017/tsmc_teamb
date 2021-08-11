@@ -1,5 +1,5 @@
 # helpdesk智能IT客服 
-## 組名: B
+## 組名: Bionic Beaver
 
 ## 介紹
 
