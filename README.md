@@ -93,8 +93,9 @@ ps. Azure service id 可在 My knowledge bases 頁面可見
 ```
 (1) backend: cd backend
 (2) 執行指令: npm install
-(3) 執行指令: tsc
-(4) 執行指令: npm run start
+(3) Run MongoDB with docker: docker run -d -p 27017:27017 mongo
+(4) 執行指令: tsc
+(5) 執行指令: npm run start
 ```
 
 * 使用fastify-swagger生成API Spec
@@ -104,5 +105,6 @@ ps. Azure service id 可在 My knowledge bases 頁面可見
 ![](pics/backend01.JPG)
 
 * 使用 Jest 做 API 單元測試
-* ![image](https://user-images.githubusercontent.com/32125966/128889749-43f3c8a0-4577-49be-9704-07390fb71d13.png)
+
+  ![image](https://user-images.githubusercontent.com/32125966/128889749-43f3c8a0-4577-49be-9704-07390fb71d13.png)
 
