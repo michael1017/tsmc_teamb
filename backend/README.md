@@ -4,14 +4,10 @@ use Fastify, Typescript and MongoDB
 
 ## API spec of IT helpdesk
 
+[API Spec](https://github.com/michael1017/tsmc_teamb/blob/dev/backend/docs/ithelp.yaml)
+
 ```
 http://localhost:8888/documentation/
-```
-
-or
-
-```
-https://8871f05b36ce.ngrok.io/documentation/
 ```
 
 ## Build backend image
