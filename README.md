@@ -101,7 +101,7 @@ ps. Azure service id 可在 My knowledge bases 頁面可見
 
 * 使用fastify-swagger生成API Spec
 
-  API Spec : https://8871f05b36ce.ngrok.io/documentation/
+  [API Spec](https://github.com/michael1017/tsmc_teamb/blob/dev/backend/docs/ithelp.yaml)
 
 ![](pics/backend01.JPG)
 
